@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webshop</title>
+    <link rel="stylesheet" href="/css/css.css">
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <span>Webshop</span>
+        <span><a href="/logout">Logout</a></span>
+    </div>
+    <div class="sidebar">
+        <a href="/">All</a>
+        <a th:each="categorie : ${categories}" th:text="${categorie.getName()}"
+           th:href="@{/vewByType(id=${categorie.getId()})}"></a>
+    </div>
+    <div class="main-content">
+        <a href="#" th:each="product : ${products}">
+        <div class="product" >
+            <img th:src="@{/getImg(imgName=${product.picName})}">
+            <div class="product-name" th:text="${product.getTitle()}"></div>
+        </div>
+        </a>
+    </div>
+</div>
+</body>
+</html>

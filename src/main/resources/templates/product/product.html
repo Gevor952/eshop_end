@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+<nav>
+    <a href="/admin/home">Home</a>
+</nav>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.getId()}"></td>
+        <td><img th:src="@{/getImg(imgName=${product.picName})}" alt="Product Image"></td>
+        <td th:text="${product.getTitle()}"></td>
+        <td th:text="${product.getPrice()}"></td>
+        <td th:text="${product.getDescription()}"></td>
+        <td>
+            <a th:href="@{/product/delete(id=${product.getId()})}">Delete</a>
+            <a th:href="@{/product/edit(id=${product.getId()})}">Edit</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

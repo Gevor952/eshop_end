@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="/css/category_add.css">
+</head>
+<body>
+<div class="form-container">
+    <form action="/category/edit" method="post" class="category-form">
+        <h1>Edit Category</h1>
+        <input type="hidden" name="id" th:value="${category.getId()}">
+        <input type="text" placeholder="Category Name" name="name" th:value="${category.getName()}" required>
+        <input type="submit" value="Edit">
+    </form>
+</div>
+</body>
+</html>

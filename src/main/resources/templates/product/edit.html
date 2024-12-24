@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="/css/product_add.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        input, select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        input[type="file"] {
+            padding: 0;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        select {
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<form action="/product/edit" method="post" enctype="multipart/form-data">
+    <h1>Edit Product</h1>
+    <!-- Hidden fields -->
+    <input type="hidden" name="id" th:value="${product.getId()}">
+    <input type="hidden" name="i_name" th:value="${product.getPicName()}">
+
+    <!-- Visible fields -->
+    <input type="text" name="title" placeholder="Product Title" th:value="${product.getTitle()}" required>
+    <input type="number" name="price" placeholder="Price" th:value="${product.getPrice()}" required>
+    <input type="text" name="description" placeholder="Description" th:value="${product.getDescription()}">
+
+    <select name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+    </select>
+
+    <input type="file" name="img">
+    <input type="submit" value="Edit Product">
+</form>
+</body>
+</html>
+
